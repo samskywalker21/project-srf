@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //MUI
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import dayjs from 'dayjs';
+import TextField from '@mui/material/TextField';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { TextField } from '@mui/material';
 
 const FormDateTime = () => {
+	const [value, setValue] = useState();
+
 	return (
 		<>
-			<LocalizationProvider dateAdapter={AdapterMoment}>
+			<LocalizationProvider dateAdapter={AdapterDayjs}>
 				<DateTimePicker
-					label="Responsive"
-					renderInput={(params) => <TextField {...params} />}
+					renderInput={(props) => <TextField {...props} fullWidth />}
+					label="DateTimePicker"
 					value={value}
 					onChange={(newValue) => {
 						setValue(newValue);
