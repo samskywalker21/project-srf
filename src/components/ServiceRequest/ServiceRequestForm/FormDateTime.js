@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import dayjs from 'dayjs';
 
 //MUI
-import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
-const FormDateTime = () => {
-	const [value, setValue] = useState();
+const FormDateTime = (props) => {
+	const value = dayjs(props.dateVal).subtract(8, 'hours');
 
 	return (
 		<>
 			<LocalizationProvider dateAdapter={AdapterDayjs}>
 				<DateTimePicker
 					renderInput={(props) => <TextField {...props} fullWidth />}
-					label="DateTimePicker"
+					label="Date & Time"
 					value={value}
 					onChange={(newValue) => {
-						setValue(newValue);
+						props.setDateHandler(newValue);
 					}}
 				/>
 			</LocalizationProvider>
